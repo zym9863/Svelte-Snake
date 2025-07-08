@@ -1,47 +1,53 @@
-# Svelte + TS + Vite
+[English](README_EN.md) | [中文](README.md)
 
-This template should help get you started developing with Svelte and TypeScript in Vite.
+# Svelte Snake Game
 
-## Recommended IDE Setup
+本项目是一个基于 Svelte + TypeScript + Vite 的经典贪吃蛇游戏示例，支持键盘操作、分数统计和速度递增。
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+## 运行方式
 
-## Need an official Svelte framework?
-
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
-
-## Technical considerations
-
-**Why use this over SvelteKit?**
-
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
-
-This template contains as little as possible to get started with Vite + TypeScript + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
-
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
-
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `allowJs` in the TS template?**
-
-While `allowJs: false` would indeed prevent the use of `.js` files in the project, it does not prevent the use of JavaScript syntax in `.svelte` files. In addition, it would force `checkJs: false`, bringing the worst of both worlds: not being able to guarantee the entire codebase is TypeScript, and also having worse typechecking for the existing JavaScript. In addition, there are valid use cases in which a mixed codebase may be relevant.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/rixo/svelte-hmr#svelte-hmr).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```ts
-// store.ts
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+```bash
+pnpm install
+pnpm dev
 ```
+
+## 主要特性
+
+- 经典贪吃蛇玩法，支持方向键和 WASD 控制
+- 吃到红色食物蛇会变长并加分，速度逐渐加快
+- 撞墙或撞到自己游戏结束，可重新开始
+- 分数实时显示
+- 响应式 Canvas 渲染，界面美观
+- 支持暂停/继续（空格键或按钮）
+
+## 目录结构
+
+```
+├── public/           # 静态资源
+├── src/
+│   ├── app.css       # 全局样式
+│   ├── App.svelte    # 应用入口，挂载 Snake 组件
+│   ├── main.ts       # 启动入口
+│   └── lib/
+│       ├── Snake.svelte   # 贪吃蛇游戏主逻辑和界面
+│       └── Counter.svelte # 计数器示例（未在主界面使用）
+├── index.html        # HTML 模板
+├── package.json      # 项目依赖与脚本
+└── ...
+```
+
+## 游戏操作说明
+
+- 方向键或 WASD 控制蛇移动
+- 空格键开始/暂停游戏
+- 吃到红色方块得分并变长
+- 撞墙或撞到自己游戏结束
+
+## 其它说明
+
+- `Counter.svelte` 为 Svelte 组件计数器示例，未集成到主页面，仅供学习参考。
+- 如需扩展功能（如排行榜、皮肤等），可在 `Snake.svelte` 基础上继续开发。
+
+---
+
+本项目适合 Svelte 新手和小游戏开发爱好者学习参考。
